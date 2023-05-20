@@ -26,8 +26,10 @@ app.get('/', (request, response) => {
     response.sendFile(__dirname + '/index.html')
 })
 
+// The colon lets us now this is a query parameter, it's not part of the path, it's the query parameter that being passed in with the path
 app.get('/api/:rapperName', (request, response) => {
-    const rapper = request.params.rapperName
+    // Now we can handle case sensitivity with .toLowerCase()
+    const rapper = request.params.rapperName.toLowerCase()
     if (rappers[rapper]) {
         response.json(rappers[rapper])
     } else {
